@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Relazione per il progetto di Programmazione 2}
+\author{Marco Colavita - secondo progetto intermedio}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introduzione}
+Scopo di tale progetto è quello di estendere l'interprete didattico fornito dal docente, in modo da gestire una collezione di coppie $<chiave,valore>$ che rappresentano un dizionario di elementi non omogenei, dove la chiave è un identificatore.
+
+\section{Sintassi Concreta}
+Viene definita la sintassi concreta qui di seguito:
+\begin{equation}
+    Dict:= \epsilon | (Ide,Exp);Dict 
+\end{equation}
+\begin{equation}
+    Insert:= (Ide,Exp,Dict)
+\end{equation}
+\begin{equation}
+    Delete:= (Dict,Ide)
+\end{equation}
+\begin{equation}
+    HasKey := (Ide,Exp)
+\end{equation}
+\begin{equation}
+    Iterate := (Exp,Exp)    
+\end{equation}
+\begin{equation}
+    Fold := (Exp,Exp)    
+\end{equation}
+\begin{equation}
+    Filter := (Ide List, Dict)
+\end{equation}
+
+\section{Scelte progettuali}
+
+Gli operatori richiesti dal docente sono stati implementati secondo il seguente criterio:\\
+\textbf{Dict} - viene utilizzato per la creazione di un nuovo dizionario. Un dizionario alla sua creazione potrebbe essere vuoto oppure costruito con un insime di coppie $<chiave,valore>$. La sua valutazione restituisce le coppie $<ide,evT>$ a significare che i tipi di elementi all'interno del dizionario non sono omogenei, quindi di qualsiasi tipo.\\
+\textbf{Insert} - che con una coppia $<chiave,valore>$ restituisce un nuovo dizionario, identico al precedente con l'aggiunta di tale coppia  (siccome questi ultimi sono immutabili). La chiamata di tale operatore può terminare con successo in caso di chiave non presente nel dizionario, o con errore, nel caso in cui la chiave da inserire compare all'interno del dizionario.\\
+\textbf{Delete} - con la quale viene restituito un nuovo dizionario, eliminando la coppia $<ide,exp>$ se è presente nel dizionario passato. Nel caso in cui l'indetificatore non è presente nel dizionario, viene resitutito un dizionario identico.\\
+\textbf{HasKey} - che prendendo come parametro l'identificatore e il dizionario, restituisce true se la chiave è presente in quest'ultimo, false altrimenti.\\
+\textbf{Iterate and Fold} - la prima applica una funzione $f$ a tutte le coppie $<ide,exp>$ nel dizionario, restituendo un nuovo dizionario aggiornato. La Fold invece applica una funzione $f$ $sequenzialmente$ anch'essa a tutte le coppie $<ide,exp>$ nel dizionario, restituendo però un unico risultato.\\
+\textbf{Filter} - viene utilizzata per restituire un nuovo dizionario. Preso come argomento una lista di identificatori, tale metodo rimuove le coppie $<ide,exp>$ se l'identificatore non compare nella lista.
+\section{Istruzioni per l'esecuzione}
+Nel file $progetto.ml$ sono presenti una serie di dichiarazioni di espressioni seguite dalla loro valutazione, con un commento che riporta il risultato da stampare. Nel file sono state testate tutte le operazioni del dizionario.
+\end{document}
