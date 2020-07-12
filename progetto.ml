@@ -317,7 +317,7 @@ let rec eval (e : exp) (r : evT env) : evT = match e with
 
     (*Inserimento chiave già esistente "mele"*)
     try eval (Insert("mele", Eint(550), dict2)) env0
-    with Failure(msg) -> Printf.printf "Insert, chiave esistente: OK (%s)\n" msg; DictVal();;
+    with Failure(msg) -> Printf.printf "Insert, chiave esistente: OK (%s)\n" msg; DictVal([]);;
     (*Risultato atteso: chiave già inserita*)
 
     (*Rimozione chiave "banane" esistente*)
